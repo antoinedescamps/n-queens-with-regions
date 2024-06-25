@@ -1,17 +1,25 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[17]:
+# In[ ]:
 
 
 import tkinter as tk
 from tkinter import messagebox
 
+
+
 def is_safe(board, row, col, queens_pos):
     for i in range(col):
-        if queens_pos[i] == row or abs(queens_pos[i] - row) == abs(i - col):
+        if queens_pos[i] == row:  # Check if there is a queen in the same row
             return False
+        
+        if abs(queens_pos[i] - row) == abs(i - col):  # Check diagonals
+            if abs(queens_pos[i] - row) == 1:  # Queens cannot be adjacent diagonally
+                return False
+
     return True
+
 
 def solve_nqueens_util(board, col, queens_pos, region_count, regions_used):
     if col >= len(board):
@@ -134,4 +142,10 @@ def main_menu():
 
 if __name__ == "__main__":
     main_menu()
+
+
+# In[5]:
+
+
+get_ipython().system('pip install opencv-python-headless')
 
